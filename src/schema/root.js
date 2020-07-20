@@ -10,10 +10,15 @@ export const typeDefs = gql`
   type Mutation {
     root: String
   }
-
+  
   type Error {
     path: String!
     message: String
+  }
+
+  type File {
+    mimetype: String!
+    path: String!
   }
 
   # QUERY ORDERING:
