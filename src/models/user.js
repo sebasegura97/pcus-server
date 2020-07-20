@@ -52,10 +52,10 @@ export default (sequelize, DataTypes) => {
     user.password = hashedPassword;
   });
 
-  User.beforeUpdate(async user => {
-    const hashedPassword = await bcrypt.hash(user.password, 12);
-    user.password = hashedPassword;
-  });
+  // User.beforeUpdate(async user => {
+  //   const hashedPassword = await bcrypt.hash(user.password, 12);
+  //   user.password = hashedPassword;
+  // });
 
   if (process.env.NODE_ENV === "production") {
     sequelize.transaction(function(t) {

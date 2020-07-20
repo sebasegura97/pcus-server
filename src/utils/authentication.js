@@ -3,10 +3,9 @@ import _ from "lodash";
 import bcrypt from "bcrypt";
 
 export const createTokens = async (user, secret, secret2) => {
-
   const createToken = jwt.sign(
     {
-      user: _.pick(user, ["id", "username"])
+      user: _.pick(user, ["id", "email"]),
     },
     secret,
     {
@@ -16,11 +15,11 @@ export const createTokens = async (user, secret, secret2) => {
 
   const createRefreshToken = jwt.sign(
     {
-      user: _.pick(user, "id")
+      user: _.pick(user, "id"),
     },
     secret2,
     {
-      expiresIn: "7d"
+      expiresIn: "7d",
     }
   );
 
@@ -38,7 +37,7 @@ export const refreshTokens = async (
 
   try {
     const {
-      user: { id }
+      user: { id },
     } = jwt.decode(refreshToken);
     userId = id;
   } catch (err) {
@@ -70,7 +69,7 @@ export const refreshTokens = async (
   return {
     token: newToken,
     refreshToken: newRefreshToken,
-    user
+    user,
   };
 };
 
@@ -80,18 +79,15 @@ export const tryLogin = async (email, password, models, SECRET, SECRET2) => {
     // user with provided email not found
     return {
       ok: false,
-      errors: [{ path: "email", message: "Wrong email" }]
+      errors: [{ path: "email", message: "Wrong email" }],
     };
   }
-  console.log("password", password);
-  console.log("user.password", user.password);
   const valid = await bcrypt.compare(password, user.password);
-  console.log("valid", valid);
   if (!valid) {
     // bad password
     return {
       ok: false,
-      errors: [{ path: "password", message: "Wrong password" }]
+      errors: [{ path: "password", message: "Wrong password" }],
     };
   }
 
@@ -108,15 +104,28 @@ export const tryLogin = async (email, password, models, SECRET, SECRET2) => {
     ok: true,
     user,
     token,
-    refreshToken
+    refreshToken,
   };
 };
 
-// Middlewares para protejer resolvers 
-export const authenticated = next => (root, args, context, info) => {
+// Middlewares para protejer resolvers
+export const authenticated = (next) => (root, args, context, info) => {
   if (!context.user) {
     throw new Error(`Unauthenticated!`);
   }
 
   return next(root, args, context, info);
 };
+
+export const createResetPasswordToken = ({
+  password: passwordHash,
+  id: userId,
+  createdAt,
+}) => {
+  const secret = passwordHash + "-" + createdAt;
+  const token = jwt.sign({ userId }, secret, { expiresIn: 360 });
+  return token;
+};
+
+export const getPasswordResetURL = (user, token) =>
+  `http://localhost:3000/reset-password/${user.id}/${token}`
