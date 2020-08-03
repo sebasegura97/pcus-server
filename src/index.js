@@ -9,6 +9,8 @@ import typeDefs from "./schema";
 import { refreshTokens } from "./utils/authentication";
 import UserAPI from "./datasources/user";
 
+const path = require("path");
+
 require("dotenv").config();
 moment.tz.setDefault("-03:00");
 
@@ -74,16 +76,21 @@ const server = new ApolloServer({
     origin: "*",
     credentials: true
   },
-  context,
+  context
 });
 
 // Start our server if we're not in a test env.
 // if we're in a test env, we'll manually start it in a test.
 const app = express();
-server.applyMiddleware({ app, path: "/", cors: true });
+
+app.use("/static", express.static(path.resolve("static")));
+
+server.applyMiddleware({ app, path: "/graphql", cors: true });
 
 if (process.env.NODE_ENV !== "test")
-  app.listen(4000, () => console.log(`App running at port 4000`));
+  app.listen(process.env.REACT_APP_SERVER_PORT, () =>
+    console.log(`App up and running at port`, process.env.REACT_APP_SERVER_PORT)
+  );
 // .then(({ url }) => console.log(`🚀 app running at ${url}`));
 
 exports.app = app;

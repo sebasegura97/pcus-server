@@ -1,12 +1,14 @@
 import { resolver as root } from "./root";
-import { resolver as user } from "./user";
 import { resolver as auth } from "./auth";
+import { resolver as procedure } from "./procedure";
+import { resolver as statistics } from "./statistics";
 import { merge } from "lodash";
 
 const resolver = merge(
   root,
-  user,
-  auth
+  auth,
+  statistics,
+  procedure
 );
 
 module.exports = resolver;

@@ -4,6 +4,6 @@ export const resolver = {
   },
 
   Mutation: {
-    root: () => "Hola mundo"
+    root: () => "Hola mundo",
   }
 };

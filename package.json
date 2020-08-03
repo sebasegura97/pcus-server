@@ -4,7 +4,7 @@
   "description": "Web server developed with nodejs and apollo server.",
   "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon src/index.js --exec babel-node",
+    "dev": "nodemon src/index.js -L --exec babel-node",
     "build": "NODE_ENV=production babel src --out-dir dist",
     "start": "NODE_ENV=production node dist/index.js"
   },
@@ -32,6 +32,7 @@
     "lodash": "^4.17.15",
     "moment-timezone": "^0.5.27",
     "mysql2": "^2.1.0",
+    "nodemailer": "^6.4.6",
     "nodemon": "^1.18.4",
     "sequelize": "^5.21.4"
   },
