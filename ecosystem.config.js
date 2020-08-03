@@ -7,6 +7,12 @@ module.exports = {
       env: {
         NODE_ENV: "development",
       },
+<<<<<<< Updated upstream
+=======
+      env_production: {
+        NODE_ENV: "production",
+      }
+>>>>>>> Stashed changes
     },
   ],
 
