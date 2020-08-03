@@ -9,21 +9,19 @@ module.exports = {
       },
       env_production: {
         NODE_ENV: "production",
-      }
+      },
     },
   ],
 
   deploy: {
     production: {
-      user: "SSH_USERNAME",
-      host: "SSH_HOSTMACHINE",
+      user: "sebasegura97",
+      host: "199.241.139.3",
       ref: "origin/master",
-      repo: "GIT_REPOSITORY",
-      path: "DESTINATION_PATH",
-      "pre-deploy-local": "",
+      repo: "git@github.com:sebasegura97/pcus-server.git",
+      path: "/home/sebasegura97/git/pcus-server",
       "post-deploy":
         "npm install && pm2 reload ecosystem.config.js --env production",
-      "pre-setup": "",
     },
   },
 };
