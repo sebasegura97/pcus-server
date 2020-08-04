@@ -1,9 +1,5 @@
 const { Model } = require("sequelize");
-import {
-  transporter,
-  getPasswordResetURL,
-  newReviewNotificationTemplate,
-} from "../utils/email";
+import { newReviewNotificationTemplate, transporter } from "../utils/email";
 // Este modelo cuenta con un campo para cada requisito que debe ser ingresado por el proponente. Tambien contempla el estado actual
 // del tramite.
 

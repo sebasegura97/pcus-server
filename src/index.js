@@ -88,8 +88,8 @@ app.use("/static", express.static(path.resolve("static")));
 server.applyMiddleware({ app, path: "/", cors: true });
 
 if (process.env.NODE_ENV !== "test")
-  app.listen(process.env.REACT_APP_SERVER_PORT, () =>
-    console.log(`App up and running at port`, process.env.REACT_APP_SERVER_PORT)
+  app.listen(process.env.PORT, () =>
+    console.log(`App up and running at port`, process.env.PORT)
   );
 // .then(({ url }) => console.log(`🚀 app running at ${url}`));
 

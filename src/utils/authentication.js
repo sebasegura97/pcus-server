@@ -128,4 +128,4 @@ export const createResetPasswordToken = ({
 };
 
 export const getPasswordResetURL = (user, token) =>
-  `http://localhost:3000/reset-password/${user.id}/${token}`
+  `${process.env.CLIENT_URL}/reset-password/${user.id}/${token}`

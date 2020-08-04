@@ -19,9 +19,9 @@ module.exports = {
       host: "199.241.139.3",
       ref: "origin/master",
       repo: "git@github.com:sebasegura97/pcus-server.git",
-      path: "/home/sebasegura97/git/pcus-server",
+      path: "/home/sebasegura97/git/",
       "post-deploy":
-        "npm install && pm2 reload ecosystem.config.js --env production",
+        "npm install && npm run build && pm2 reload ecosystem.config.js --env production",
     },
   },
 };

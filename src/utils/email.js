@@ -11,8 +11,8 @@ export const transporter = nodemailer.createTransport({
   },
 });
 
-export const getPasswordResetURL = (user, token) =>
-  `http://localhost:3000/password/reset/${user._id}/${token}`;
+// export const getPasswordResetURL = (user, token) =>
+//   `http://localhost:3000/password/reset/${user._id}/${token}`;
 
 export const resetPasswordTemplate = (user, url) => {
   const from = process.env.EMAIL_USER;
@@ -57,7 +57,7 @@ export const userUpdateProcedureNotificationTemplate = ({
   <p>Hola ${user.name} ${user.lastname},</p>
   <p>El procedimiento nro. ${procedure.id} ha sido actualizado por el proponente.</p>
   <p>Por favor ingrese al sistema y realice la revision pertinente.</p>
-  <a href="localhost:3000/admin/procedure/${procedure.id}">VER PROCEDIMIENTO</a>
+  <a href="${process.env.CLIENT_URL}/admin/procedure/${procedure.id}">VER PROCEDIMIENTO</a>
   <p>–Secretaría de ambiente de la provincia de salta</p>
   `;
   return { from, to, subject, html };

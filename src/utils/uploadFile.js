@@ -21,7 +21,7 @@ export default async function uploadFile(file, folder, subfolder, filenameToSave
         .on("close", res)
     );
 
-    return `http://localhost:${process.env.REACT_APP_SERVER_PORT}/static/${folder}/${subfolder}/${savedFilename}`;
+    return `${process.env.API_URL}/static/${folder}/${subfolder}/${savedFilename}`;
   } else {
     return null;
   }

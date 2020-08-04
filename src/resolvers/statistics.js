@@ -147,7 +147,7 @@ async function calculateStatistics({ from, to, dataSources }) {
     name: "Procedimientos pendientes",
     unit: "Procedimientos",
     valueMoreThan300: cantidadDePendientesMas300,
-    valueLessThan300: cantidadDeAprobadosMenos300,
+    valueLessThan300: cantidadDePendientesMenos300,
     description:
       "Cantidad total de solicitudes pendientes desde que el sistema está en funcionamiento",
   };
@@ -207,7 +207,7 @@ async function calculateStatistics({ from, to, dataSources }) {
 
   const superficieAprobada = {
     name: "Superficie aprobada",
-    unit: "Dias",
+    unit: "Hectareas",
     valueMoreThan300: superficieAprobadaMas300,
     valueLessThan300: superficieAprobadaMenos300,
     description: "Cantidad de superficie aprobada para PCUS en hectareas.",
