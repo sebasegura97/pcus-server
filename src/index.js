@@ -85,7 +85,7 @@ const app = express();
 
 app.use("/static", express.static(path.resolve("static")));
 
-server.applyMiddleware({ app, path: "/graphql", cors: true });
+server.applyMiddleware({ app, path: "/", cors: true });
 
 if (process.env.NODE_ENV !== "test")
   app.listen(process.env.REACT_APP_SERVER_PORT, () =>
